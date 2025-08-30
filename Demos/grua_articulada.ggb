@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<geogebra format="5.0" version="6.0">
+  <construction title="Grúa Articulada" author="FTR" date="2025-04-05">
+    <!-- Deslizadores -->
+    <element type="slider" label="theta1">
+      <coords x="2" y="1" z="1"/>
+      <slider min="-180°" max="180°" increment="1°"/>
+      <value>45°</value>
+    </element>
+    <element type="slider" label="L2">
+      <coords x="2" y="1.5" z="1"/>
+      <slider min="0.5" max="2.0" increment="0.1"/>
+      <value>1.0</value>
+    </element>
+    <element type="slider" label="masa">
+      <coords x="2" y="2.0" z="1"/>
+      <slider min="100" max="1000" increment="50"/>
+      <value>500</value>
+    </element>
+
+    <!-- Geometría -->
+    <element type="point" label="O">
+      <coords x="0" y="0" z="1"/>
+    </element>
+    <element type="segment" label="brazo1">
+      <start>O</start>
+      <end>(1.5*cos(theta1), 1.5*sin(theta1))</end>
+    </element>
+    <element type="point" label="A">
+      <coords x="1.5*cos(theta1)" y="1.5*sin(theta1)" z="1"/>
+    </element>
+    <element type="segment" label="brazo2">
+      <start>A</start>
+      <end>( (1.5 + L2)*cos(theta1), (1.5 + L2)*sin(theta1) )</end>
+    </element>
+    <element type="point" label="Gancho">
+      <coords x="(1.5 + L2)*cos(theta1)" y="(1.5 + L2)*sin(theta1)" z="1"/>
+    </element>
+
+    <!-- Centro de masa (simplificado) -->
+    <element type="point" label="CM">
+      <coords x="(1.5*cos(theta1)*200 + (1.5 + L2)*cos(theta1)*masa)/(200 + masa)" y="(1.5*sin(theta1)*200 + (1.5 + L2)*sin(theta1)*masa)/(200 + masa)" z="1"/>
+    </element>
+
+    <!-- Base y estabilidad -->
+    <element type="segment" label="base">
+      <start>(-1,0)</start>
+      <end>(1,0)</end>
+    </element>
+    <element type="boolean" label="estable">
+      <value>abs(x(CM)) < 1</value>
+    </element>
+    <element type="text" label="estado">
+      <value>Si(estable, "ESTABLE", "¡VOLCADURA!")</value>
+      <position x="5" y="5"/>
+    </element>
+
+    <!-- Momento -->
+    <element type="numeric" label="momento">
+      <value>masa * 9.8 * abs((1.5 + L2)*cos(theta1))</value>
+    </element>
+
+    <!-- Información -->
+    <element type="text" label="info">
+      <value>"Grúa Articulada\nÁngulo: "+theta1+"\nAlcance: "+(1.5+L2)+" m\nMasa: "+masa+" kg\nMomento: "+momento+" Nm"</value>
+      <position x="5" y="6"/>
+    </element>
+  </construction>
+</geogebra>

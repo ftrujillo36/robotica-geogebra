@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<geogebra format="6.0" version="6.0" platform="3">
+  <construction title="Plataforma Stewart 3D" author="FTR" date="2025-04-05">
+    <!-- Variables de control -->
+    <element type="slider" label="x">
+      <coords x="2" y="1" z="1"/>
+      <slider min="-0.2" max="0.2" increment="0.01"/>
+      <value>0</value>
+    </element>
+    <element type="slider" label="y">
+      <coords x="2" y="1.5" z="1"/>
+      <slider min="-0.2" max="0.2" increment="0.01"/>
+      <value>0</value>
+    </element>
+    <element type="slider" label="z">
+      <coords x="2" y="2.0" z="1"/>
+      <slider min="0.1" max="0.5" increment="0.01"/>
+      <value>0.3</value>
+    </element>
+    <element type="slider" label="pitch">
+      <coords x="2" y="2.5" z="1"/>
+      <slider min="-10°" max="10°" increment="1°"/>
+      <value>0°</value>
+    </element>
+    <element type="slider" label="roll">
+      <coords x="2" y="3.0" z="1"/>
+      <slider min="-10°" max="10°" increment="1°"/>
+      <value>0°</value>
+    </element>
+
+    <!-- Puntos base (fijos) -->
+    <element type="point3d" label="B1">
+      <coords x="0.5" y="0" z="0"/>
+    </element>
+    <element type="point3d" label="B2">
+      <coords x="0.25" y="0.433" z="0"/>
+    </element>
+    <element type="point3d" label="B3">
+      <coords x="-0.25" y="0.433" z="0"/>
+    </element>
+    <element type="point3d" label="B4">
+      <coords x="-0.5" y="0" z="0"/>
+    </element>
+    <element type="point3d" label="B5">
+      <coords x="-0.25" y="-0.433" z="0"/>
+    </element>
+    <element type="point3d" label="B6">
+      <coords x="0.25" y="-0.433" z="0"/>
+    </element>
+
+    <!-- Plataforma móvil (transformada) -->
+    <element type="point3d" label="P1">
+      <coords x="0.3*cos(pitch) + x" y="0 + y" z="z + 0.3*sin(pitch)"/>
+    </element>
+    <element type="point3d" label="P2">
+      <coords x="0.15*cos(pitch) - 0.26*sin(roll) + x" y="0.26*cos(roll) + y" z="z + 0.15*sin(pitch)"/>
+    </element>
+    <!-- ... otros puntos P3-P6 con rotaciones combinadas -->
+
+    <!-- Actuadores -->
+    <element type="segment3d" label="act1">
+      <start>B1</start>
+      <end>P1</end>
+    </element>
+    <element type="segment3d" label="act2">
+      <start>B2</start>
+      <end>P2</end>
+    </element>
+    <!-- ... act3 a act6 -->
+
+    <!-- Longitudes -->
+    <element type="numeric" label="len1">
+      <value>Distancia(B1, P1)</value>
+    </element>
+    <element type="numeric" label="len2">
+      <value>Distancia(B2, P2)</value>
+    </element>
+
+    <!-- Información -->
+    <element type="text" label="info">
+      <value>"Plataforma Stewart\nAct1: "+len1+"\nAct2: "+len2+"\nAltura: "+z</value>
+      <position x="5" y="5"/>
+    </element>
+  </construction>
+</geogebra>
